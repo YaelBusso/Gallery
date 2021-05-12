@@ -15,8 +15,9 @@ const SortableGallery = SortableContainer(({ items }) => (
 
 const GridGallery = () => {
     //just for here
-    const [isProductionMode, setisProductionMode] = useState(false);
-    
+    const [isProduction, setisProduction] = useState(true);
+    const [lightbox, setLightbox] = useState(true);
+
     const [items, setItems] = useState(photos);
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -51,12 +52,17 @@ const GridGallery = () => {
     return (
         <div >
         {/* <Gallery photos={photos} direction={"column"} /> */}
-        { (isProductionMode==false)?
+        <button onClick={()=>setisProduction(!isProduction)}>Change eye mode</button>
+        <button onClick={()=>setLightbox(!lightbox)}>Toogle LightBox Option</button>
+        { (isProduction==false)?
             <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
       :
+      ((lightbox==true)?
         <SRLWrapper options={options}>
-        <Gallery photos={photos}/>
-        </SRLWrapper>}
+        <Gallery photos={items}/>
+        </SRLWrapper>:
+        <Gallery photos={items}/>)
+        }
         </div>
     )
 }

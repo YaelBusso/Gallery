@@ -1,10 +1,9 @@
 import React from 'react';
-import Editor from './Editor';
 import Stage from './Stage';
 const App = () => {
   return (
     <div>
-      <Editor/>
+      <h1>Welcome to the gallery experimental zone:)</h1>
       <Stage/>
     </div>
   )
