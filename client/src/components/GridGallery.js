@@ -9,14 +9,12 @@ import { photos } from "./photos";
 
 const SortablePhoto = SortableElement(item => <Photo {...item} />);
 
-const SortableGallery = SortableContainer(({ items }) => (
-    <Gallery photos={items} renderImage={props => <SortablePhoto {...props} />} />
-));
-
 const GridGallery = () => {
     //just for here
     const [isProduction, setisProduction] = useState(true);
     const [lightbox, setLightbox] = useState(true);
+    const [gridType, setgridType] = useState("row");
+
 
     const [items, setItems] = useState(photos);
 
@@ -48,18 +46,25 @@ const GridGallery = () => {
         // }
     };
 
-
+    const SortableGallery = SortableContainer(({ items }) => (
+        <Gallery photos={items}
+                 direction={(gridType=='row')? "row": "column"}
+                 renderImage={props => <SortablePhoto {...props} />} />
+    ));
+    
     return (
         <div >
-        {/* <Gallery photos={photos} direction={"column"} /> */}
         <button onClick={()=>setisProduction(!isProduction)}>Change eye mode</button>
-        <button onClick={()=>setLightbox(!lightbox)}>Toogle LightBox Option</button>
+        <button onClick={()=>setLightbox(!lightbox)}>Toogle LightBox mode</button>
+        <button onClick={()=>setgridType("column")}>Column Mode</button>
+        <button onClick={()=>setgridType("row")}>Rows Mode</button>
+
         { (isProduction==false)?
             <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
       :
       ((lightbox==true)?
         <SRLWrapper options={options}>
-        <Gallery photos={items}/>
+        <Gallery photos={items} direction={(gridType=='row')? "row": "column"}/>
         </SRLWrapper>:
         <Gallery photos={items}/>)
         }

@@ -37,7 +37,7 @@ export const photos = [
       src: initialPhoto6,
       width: 4,
       height: 3
-    },
+     },
     {
       src: initialPhoto7,
       width: 3,
@@ -47,6 +47,16 @@ export const photos = [
       src: initialPhoto8,
       width: 4,
       height: 3
-    }
+    },
+    // {
+    //   src: initialPhoto7,
+    //   width: 3,
+    //   height: 4
+    // },
+    // {
+    //   src: initialPhoto8,
+    //   width: 4,
+    //   height: 3
+    // }
   ];
   
