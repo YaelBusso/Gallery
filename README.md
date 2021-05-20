@@ -1,4 +1,3 @@
 # Gallery
-A fully Dynamic Gallery Editing built in React.js
+A fully Dynamic Gallery Editor built in React.js
 Includes: Lightbox, DND and much more!
-Commit Change!
