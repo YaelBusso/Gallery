@@ -1,50 +1,42 @@
 import React, { useState, useEffect } from "react";
 import Gallery from "react-photo-gallery";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { SRLWrapper } from "simple-react-lightbox";
 import Photo from "./Photo";
 import arrayMove from "array-move";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { useSelector, useDispatch } from "react-redux";
-import { getImages, updateImage } from "../features/imagesSlice";
+import { fetchImages, selectAllImages } from "../features/imagesSlice";
 import * as api from "../api/index.js";
 import { photos } from "./photos";
-import {Spinner} from 'react-bootstrap';
+import { Spinner } from "react-bootstrap";
+import Icon from "./Icon";
 
 const SortablePhoto = SortableElement((item) => <Photo {...item} />);
 
 const GridGallery = () => {
-  //just for here
-  const imageList = useSelector((state) => state.imageList.value);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchImages().then((response) => {
-        dispatch({ type: getImages, payload: response });
-      });
-    };
-
-    fetchData();
-  }, []);
-
+  //   const imageList = useSelector((state) => state.imageList.value);
   const [isProduction, setisProduction] = useState(true);
   const [lightbox, setLightbox] = useState(true);
   const [gridType, setgridType] = useState("row");
-
-
-
   console.log("======--------=======");
-  console.log(imageList);
 
-// const [items, setItems] = useSelector((state) => state.imageList.value);
-
+  const dispatch = useDispatch();
+  const imageList = useSelector(selectAllImages);
+  const imageStatus = useSelector((state) => state.imageList.status);
   const [items, setItems] = useState(photos);
 
+  useEffect(() => {
+    if (imageStatus === "idle") {
+      dispatch(fetchImages());
+    }
+  }, [imageStatus, dispatch]);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setItems(arrayMove(items, oldIndex, newIndex));
   };
 
-  //To next step of custom lightbox...
+  //To custom lightbox...
   const options = {
     // settings: {
     // 	overlayColor: 'rgb(25, 136, 124)',
@@ -75,19 +67,40 @@ const GridGallery = () => {
       renderImage={(props) => <SortablePhoto {...props} />}
     />
   ));
-  
-  return (
-    !items.length? <Spinner animation="border" variant="secondary" /> : (
-    <div>
-      <button onClick={() => setisProduction(!isProduction)}>
-        Change eye mode
-      </button>
-      <button onClick={() => setLightbox(!lightbox)}>
-        Toogle LightBox mode
-      </button>
-      <button onClick={() => setgridType("column")}>Column Mode</button>
-      <button onClick={() => setgridType("row")}>Rows Mode</button>
 
+  return !imageList ? (
+    <Spinner animation="border" variant="secondary" />
+  ) : (
+    <>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/">MyGallery:)</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto"></Nav>
+            <Nav>
+              <Nav.Link onClick={() => setgridType("row")}>
+                <Icon name="row" /> Row Mode
+              </Nav.Link>
+              <Nav.Link onClick={() => setgridType("column")}>
+                <Icon name="col" /> Column Mode
+              </Nav.Link>
+              <Nav.Link onClick={() => setLightbox(!lightbox)}>
+                <Icon name="lightbox" /> Toggle LightBox
+              </Nav.Link>
+              <Nav.Link onClick={() => setisProduction(!isProduction)}>
+                <Icon name="eye" /> Toggle Drag and Drop Display{" "}
+              </Nav.Link>
+              <Nav.Link
+                eventKey={2}
+                href="https://github.com/YaelShrem/Gallery"
+              >
+                <Icon name="githubLogo" /> View Source Code
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       {isProduction === false ? (
         <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
       ) : lightbox === true ? (
@@ -100,10 +113,8 @@ const GridGallery = () => {
       ) : (
         <Gallery photos={items} />
       )}
-    </div>
-      ));
+    </>
+  );
 };
 
 export default GridGallery;
-
-//TODO: column state, resize div, dynamic images size

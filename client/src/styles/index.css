@@ -1,3 +1,10 @@
 .image-dev:hover{ 
   background-color: red;
 }
+
+body{
+  background-color: rgb(7, 7, 10);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
