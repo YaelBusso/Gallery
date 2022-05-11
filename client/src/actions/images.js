@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_IMAGE, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_IMAGE, CREATE, UPDATE, DELETE } from '../features/constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getImage = (id) => async (dispatch) => {

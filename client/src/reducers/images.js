@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_IMAGE, CREATE, UPDATE, DELETE} from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_IMAGE, CREATE, UPDATE, DELETE} from '../features/constants/actionTypes';
 
 export default (state = { isLoading: true, images: [] }, action) => {
   switch (action.type) {
@@ -13,9 +13,9 @@ export default (state = { isLoading: true, images: [] }, action) => {
     case CREATE:
       return { ...state, images: [...state.images, action.payload] };
     case UPDATE:
-      return { ...state, images: state.posts.map((image) => (image._id === action.payload._id ? action.payload : image)) };
+      return { ...state, images: state.images.map((image) => (image._id === action.payload._id ? action.payload : image)) };
     case DELETE:
-      return { ...state, images: state.posts.filter((image) => image._id !== action.payload) };
+      return { ...state, images: state.images.filter((image) => image._id !== action.payload) };
     default:
       return state;
   }
