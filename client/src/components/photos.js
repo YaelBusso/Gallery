@@ -1,13 +1,4 @@
-// import initialPhoto1 from '../images/1.png';
-// import initialPhoto2 from '../images/2.png';
-// import initialPhoto3 from '../images/3.png';
-// import initialPhoto4 from '../images/4.png';
-// import initialPhoto5 from '../images/5.png';
-// import initialPhoto6 from '../images/6.png';
-// import initialPhoto7 from '../images/7.png';
-// import initialPhoto8 from '../images/8.png';
-
-  export const photos = [
+export const photos = [
     {
       id: "1",
       src: "https://images.unsplash.com/photo-1461988320302-91bde64fc8e4",

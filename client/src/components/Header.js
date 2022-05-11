@@ -14,13 +14,13 @@ const Header = () => {
         
             </Nav>
             <Nav>
-            <Nav.Link href="#deets"><Icon name="lightbox"/></Nav.Link>
-              <Nav.Link href="#deets"><Icon name="row"/></Nav.Link>
-              <Nav.Link href="#deets"><Icon name="col"/></Nav.Link>
-              <Nav.Link href="#deets"><Icon name="eye"/></Nav.Link>
-              <Nav.Link eventKey={2} href="https://github.com/YaelShrem/Gallery">
+            <Nav.Link href="#"><Icon name="row"/></Nav.Link>
+            <Nav.Link href="#"><Icon name="col"/></Nav.Link>
+            <Nav.Link href="#"><Icon name="lightbox"/></Nav.Link>
+            <Nav.Link href="#"><Icon name="eye"/></Nav.Link>
+            <Nav.Link eventKey={2} href="https://github.com/YaelShrem/Gallery">
                 <Icon name="githubLogo" />
-              </Nav.Link>
+            </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 // const API = axios.create({ baseURL: 'https://api.jsonbin.io/b/627b346c38be29676100ef94' });
 
@@ -15,16 +15,19 @@ import axios from 'axios';
 // export const createImage = (newPost) => API.post('/images', newPost);
 // export const updateImage = (id, updatedPost) => API.patch(`/images/${id}`, updatedPost);
 // export const deleteImage = (id) => API.delete(`/images/${id}`);
-const SECRET_KEY = "$2b$10$mDDPw85Qhc8zycOFyr9mAuJaIqoqaLd9nDH0mBFhCHyybApT5BEve";
-const TRY=process.env.REACT_APP_TRY;
+const SECRET_KEY =
+  "$2b$10$mDDPw85Qhc8zycOFyr9mAuJaIqoqaLd9nDH0mBFhCHyybApT5BEve";
+const TRY = process.env.REACT_APP_TRY;
 console.log("SECRET_KEY: " + SECRET_KEY, "TRY: " + TRY);
 
-export const fetchImages = () => axios({
-    method: 'get',
+export const fetchImages = async () =>
+  axios({
+    method: "get",
     url: "https://api.jsonbin.io/b/627b346c38be29676100ef94",
     headers: {
-        "Secret-Key": SECRET_KEY
+      "Secret-Key": SECRET_KEY,
     },
-}).then(function (res) {
-    console.log(res.data)
-});
+  }).then(function (res) {
+    // console.log(JSON.stringify(res.data.moduleAccess.pictures));
+    return (JSON.stringify(res.data.moduleAccess.pictures))
+  });
