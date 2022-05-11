@@ -1,4 +1,5 @@
 
+//TODO: usage of constance
 export const CREATE = 'CREATE';
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';
