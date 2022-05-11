@@ -20,6 +20,7 @@ const GridGallery = () => {
 
   const imageList = useSelector((state) => state.imageList.value);
 
+
   console.log("======--------=======");
   console.log(imageList);
 

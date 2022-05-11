@@ -1,5 +1,5 @@
 import React from "react";
-import {Navbar, Container, Nav } from "react-bootstrap";
+import {Navbar, Container, Nav, Tooltip, OverlayTrigger } from "react-bootstrap";
 import Icon from './Icon'
 
 const Header = () => {
@@ -14,7 +14,10 @@ const Header = () => {
         
             </Nav>
             <Nav>
-            <Nav.Link href="#"><Icon name="row"/></Nav.Link>
+            <Nav.Link href="#"><OverlayTrigger placement="buttom" overlay={<></>}>
+              <Icon name="row"/>
+              </OverlayTrigger>
+            </Nav.Link>
             <Nav.Link href="#"><Icon name="col"/></Nav.Link>
             <Nav.Link href="#"><Icon name="lightbox"/></Nav.Link>
             <Nav.Link href="#"><Icon name="eye"/></Nav.Link>
