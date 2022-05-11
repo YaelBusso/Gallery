@@ -7,16 +7,15 @@ const Header = () => {
     <header>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">MyGallery:)</Navbar.Brand>
+          <Navbar.Brand href="/">MyGallery:)</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
         
             </Nav>
             <Nav>
-            <Nav.Link href="#"><OverlayTrigger placement="buttom" overlay={<></>}>
+            <Nav.Link href="#">
               <Icon name="row"/>
-              </OverlayTrigger>
             </Nav.Link>
             <Nav.Link href="#"><Icon name="col"/></Nav.Link>
             <Nav.Link href="#"><Icon name="lightbox"/></Nav.Link>

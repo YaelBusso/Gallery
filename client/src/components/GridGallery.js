@@ -14,11 +14,22 @@ const SortablePhoto = SortableElement((item) => <Photo {...item} />);
 
 const GridGallery = () => {
   //just for here
+  const imageList = useSelector((state) => state.imageList.value);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchImages().then((response) => {
+        dispatch({ type: getImages, payload: response });
+      });
+    };
+
+    fetchData();
+  }, []);
+
   const [isProduction, setisProduction] = useState(true);
   const [lightbox, setLightbox] = useState(true);
   const [gridType, setgridType] = useState("row");
 
-  const imageList = useSelector((state) => state.imageList.value);
 
 
   console.log("======--------=======");

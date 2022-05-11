@@ -7,16 +7,16 @@ import { getImages, updateImage } from "../features/imagesSlice";
 import * as api from "../api/index.js";
 
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchImages().then((response) => {
-        dispatch({ type: getImages, payload: response });
-      });
-    };
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await api.fetchImages().then((response) => {
+  //       dispatch({ type: getImages, payload: response });
+  //     });
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <>
