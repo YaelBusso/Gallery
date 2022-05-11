@@ -48,7 +48,7 @@ const GridGallery = () => {
 
     const SortableGallery = SortableContainer(({ items }) => (
         <Gallery photos={items}
-                 direction={(gridType=='row')? "row": "column"}
+                 direction={(gridType==='row')? "row": "column"}
                  renderImage={props => <SortablePhoto {...props} />} />
     ));
     
@@ -59,12 +59,12 @@ const GridGallery = () => {
         <button onClick={()=>setgridType("column")}>Column Mode</button>
         <button onClick={()=>setgridType("row")}>Rows Mode</button>
 
-        { (isProduction==false)?
+        { (isProduction===false)?
             <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
       :
-      ((lightbox==true)?
+      ((lightbox===true)?
         <SRLWrapper options={options}>
-        <Gallery photos={items} direction={(gridType=='row')? "row": "column"}/>
+        <Gallery photos={items} direction={(gridType==='row')? "row": "column"}/>
         </SRLWrapper>:
         <Gallery photos={items}/>)
         }

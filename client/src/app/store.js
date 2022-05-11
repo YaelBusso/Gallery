@@ -1,7 +1,7 @@
-import {compose, applyMiddleware} from 'redux'
+// import {compose, applyMiddleware} from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { reducers } from '../reducers';
-import thunk from 'redux-thunk';
+// import { reducers } from '../reducers';
+// import thunk from 'redux-thunk';
 import counterReducer from '../features/counter/counterSlice'
 
 export default configureStore({
